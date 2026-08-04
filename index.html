@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Envelope Opening Screen -->
+    <div class="envelope-overlay" id="envelopeOverlay">
+        <div class="envelope-wrapper" id="envelopeWrapper" onclick="this.querySelector('.envelope').classlist.add('open'); setTimeout(()=>{ document.getElementById('envelopeOverlay').style.display='none'; document.getElementById('maincontent').classlist.remove('hidden');},1000);">
+            
+                <div class="envelope-flap"></div>
+                <div class="envelope-body"></div>
+                <div class="seal-btn" id="sealBtn" title="Click to open">
+                    <span class="heart-icon">💖</span>
+                </div>
+            </div>
+            <p class="seal-text">Tap seal to open 💕</p>
+        </div>
+        
+        <div class="flower-petals-container" id="petalsContainer"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content hidden" id="mainContent">
+        <div class="container-horizontal">
+            
+            <div class="cake-container" id="cakeContainer" title="Click on the cake for surprise!">
+                <div class="glow-bg"></div>
+
+                <input type="checkbox" id="candle-toggle" checked>
+                <label for="candle-toggle" class="candle" title="Click to toggle candle">
+                    <div class="smoke"></div>
+                    <div class="flame"></div>
+                </label>
+
+                <div class="heart h1">❤️</div>
+                <div class="heart h2">💖</div>
+
+                <div class="cake">
+                    <div class="plate"></div>
+                    <div class="layer layer-bottom"></div>
+                    <div class="layer layer-middle"></div>
+                    <div class="layer layer-top">
+                        <div class="icing">
+                            <div class="drip drip1"></div>
+                            <div class="drip drip2"></div>
+                            <div class="drip drip3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-section">
+                <h1 class="Happy_Birthday">Happy Birthday My Love</h1>
+                <p class="instruction">✨ Click the candle or cake for surprises!</p>
+                
+                <div class="controls">
+                    <button class="btn" id="musicBtn">🎵 Play Music</button>
+                    <button class="btn" id="confettiBtn">🎉 Celebrate</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Glowing Flowers Garden (Matching Reference) -->
+        <div class="glowing-garden">
+            <!-- Grass & Fern Leaves behind -->
+            <div class="grass-group left"></div>
+            <div class="grass-group right"></div>
+
+            <!-- Big Main Flowers -->
+            <div class="flower flower-left">
+                <div class="stem"></div>
+                <div class="leaf leaf-l"></div>
+                <div class="leaf leaf-r"></div>
+                <div class="petals">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <div class="flower-center"></div>
+                </div>
+            </div>
+
+            <div class="flower flower-center-tall">
+                <div class="stem"></div>
+                <div class="leaf leaf-l"></div>
+                <div class="leaf leaf-r"></div>
+                <div class="petals">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <div class="flower-center"></div>
+                </div>
+            </div>
+
+            <div class="flower flower-right">
+                <div class="stem"></div>
+                <div class="leaf leaf-l"></div>
+                <div class="leaf leaf-r"></div>
+                <div class="petals">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <div class="flower-center"></div>
+                </div>
+            </div>
+        </div>
