@@ -1,106 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday My Love</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You, Zaineb</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Envelope Opening Screen -->
-    <div class="envelope-overlay" id="envelopeOverlay">
-        <div class="envelope-wrapper" id="envelopeWrapper" onclick="this.querySelector('.envelope').classlist.add('open'); setTimeout(()=>{ document.getElementById('envelopeOverlay').style.display='none'; document.getElementById('maincontent').classlist.remove('hidden');},1000);">
-            
-                <div class="envelope-flap"></div>
-                <div class="envelope-body"></div>
-                <div class="seal-btn" id="sealBtn" title="Click to open">
-                    <span class="heart-icon">💖</span>
-                </div>
-            </div>
-            <p class="seal-text">Tap seal to open 💕</p>
-        </div>
-        
-        <div class="flower-petals-container" id="petalsContainer"></div>
+<!-- LOADER -->
+<div id="loader" class="loader-screen">
+  <div class="spinner"></div>
+  <div class="loader-text">loading your surprise...</div>
+</div>
+
+<audio id="bgMusic" src="musichb.mp3" loop></audio>
+<button id="musicBtn" class="music-btn" title="Music">🔈</button>
+<button id="shareBtn" class="share-btn" title="Copy link">🔗</button>
+<div id="toast" class="toast hidden">Link copied!</div>
+
+<canvas id="petalCanvas"></canvas>
+
+<!-- 1. INTRO -->
+<div id="intro" class="screen">
+  <div class="gift-wrap" id="giftBtn">
+    <div class="gift-emoji">🎁</div>
+    <div class="intro-title">For you, my baby.</div>
+    <div class="intro-sub">tap to open</div>
+  </div>
+</div>
+
+<!-- 2. ROSE BLOOM -->
+<div id="roseOverlay" class="screen"></div>
+
+<!-- 3. ENVELOPE -->
+<div id="envelopeScreen" class="screen hidden">
+  <div class="names">✨ From: Safouen ✨</div>
+  <div class="envelope" id="envelope">
+    <div class="env-back"></div>
+    <div class="env-pocket"></div>
+    <div class="env-flap"></div>
+    <div class="env-seal">💌</div>
+  </div>
+  <div class="names">🌸 To: Zaineb 🌸</div>
+  <div class="tap-hint">tap the envelope</div>
+</div>
+
+<!-- 4. LETTER + POLAROID + SCRATCH -->
+<div id="finalScreen" class="screen hidden">
+  <div class="letter-card" id="letterCard">
+    <div class="letter-title">From me to you.</div>
+    <p class="letter-body">This is how much I love you, Zaineb. Every little moment with you feels like a page from my favorite story — and I can't wait to write the next one with you.</p>
+
+    <div class="polaroid" id="polaroid">
+      <div class="photo">📷</div>
+      <div class="cap">Special memories ❤</div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content hidden" id="mainContent">
-        <div class="container-horizontal">
-            
-            <div class="cake-container" id="cakeContainer" title="Click on the cake for surprise!">
-                <div class="glow-bg"></div>
+    <div class="scratch-wrap">
+      <div class="scratch-msg">✨ Surprise Code: FOREVER&ALWAYS ✨</div>
+      <canvas id="scratchCanvas" width="240" height="100"></canvas>
+    </div>
+    <div class="scratch-tip">scratch the card above</div>
 
-                <input type="checkbox" id="candle-toggle" checked>
-                <label for="candle-toggle" class="candle" title="Click to toggle candle">
-                    <div class="smoke"></div>
-                    <div class="flame"></div>
-                </label>
+    <button id="continueBtn" class="continue-btn">one more thing ↓</button>
+  </div>
+</div>
 
-                <div class="heart h1">❤️</div>
-                <div class="heart h2">💖</div>
+<!-- 5. LOVE QUESTION -->
+<div id="loveScreen" class="screen hidden">
+  <div id="questionBox">
+    <div class="love-emoji">💗</div>
+    <div class="love-title">Do you love me?</div>
+    <div class="dodge-text" id="dodgeText"></div>
+    <div class="love-buttons" id="loveButtons">
+      <button id="yesBtn" class="yes-btn">Yes</button>
+      <button id="noBtn" class="no-btn">No</button>
+    </div>
+  </div>
+  <div id="loveResult" class="love-result hidden">
+    <div class="result-emoji">🥰</div>
+    <div class="result-text">I knew it. I love you more, Zaineb.</div>
+  </div>
+  <div id="heartBurst" class="heart-burst"></div>
+</div>
 
-                <div class="cake">
-                    <div class="plate"></div>
-                    <div class="layer layer-bottom"></div>
-                    <div class="layer layer-middle"></div>
-                    <div class="layer layer-top">
-                        <div class="icing">
-                            <div class="drip drip1"></div>
-                            <div class="drip drip2"></div>
-                            <div class="drip drip3"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-section">
-                <h1 class="Happy_Birthday">Happy Birthday My Love</h1>
-                <p class="instruction">✨ Click the candle or cake for surprises!</p>
-                
-                <div class="controls">
-                    <button class="btn" id="musicBtn">🎵 Play Music</button>
-                    <button class="btn" id="confettiBtn">🎉 Celebrate</button>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Glowing Flowers Garden (Matching Reference) -->
-        <div class="glowing-garden">
-            <!-- Grass & Fern Leaves behind -->
-            <div class="grass-group left"></div>
-            <div class="grass-group right"></div>
-
-            <!-- Big Main Flowers -->
-            <div class="flower flower-left">
-                <div class="stem"></div>
-                <div class="leaf leaf-l"></div>
-                <div class="leaf leaf-r"></div>
-                <div class="petals">
-                    <span></span><span></span><span></span><span></span><span></span>
-                    <div class="flower-center"></div>
-                </div>
-            </div>
-
-            <div class="flower flower-center-tall">
-                <div class="stem"></div>
-                <div class="leaf leaf-l"></div>
-                <div class="leaf leaf-r"></div>
-                <div class="petals">
-                    <span></span><span></span><span></span><span></span><span></span>
-                    <div class="flower-center"></div>
-                </div>
-            </div>
-
-            <div class="flower flower-right">
-                <div class="stem"></div>
-                <div class="leaf leaf-l"></div>
-                <div class="leaf leaf-r"></div>
-                <div class="petals">
-                    <span></span><span></span><span></span><span></span><span></span>
-                    <div class="flower-center"></div>
-                </div>
-            </div>
-        </div>
+<script src="script.js"></script>
+</body>
+</html>
