@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dodgeText = document.getElementById('dodgeText');
   const heartBurst = document.getElementById('heartBurst');
 
-  const dodgePhrases = ['are you sure? 🥺','really?','think again 👀','come on...','please? 🙏'];
+  const dodgePhrases = ['really?','think again 👀','come on...','.......'];
   let dodgeCount = 0;
   let yesScale = 1;
 
